@@ -1,0 +1,20 @@
+<ng-template #resultItem let-id="id" let-kkl="kkl" let-description="description">
+  <h3>
+    <span id="calories-{{id}}">{{kkl | spacedNumber}}</span> ккал
+  </h3>
+  <p>
+    {{description}}
+  </p>
+</ng-template>
+
+<section *ngIf="results | async as results" class="counter__result">
+  <h2 class="heading">
+    Ваша норма калорий
+  </h2>
+  <ul class="counter__result-list">
+    <li class="counter__result-item" *ngFor="let result of results | keyvalue">
+      <ng-container
+        *ngTemplateOutlet="resultItem; context: {id: result.key, description: result.value.description, kkl: result.value.value}"/>
+    </li>
+  </ul>
+</section>

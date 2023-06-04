@@ -1,0 +1,16 @@
+<ul class="switcher" [formGroup]="formGroup">
+  <ng-template #genderSwitch let-value="value" let-label="label" let-id="id">
+    <li class="switcher__item">
+      <input id="gender-{{id}}" name="sex" value="{{value}}" formControlName="sex" type="radio"
+             [defaultChecked]="value == 'male'" required>
+      <label for="gender-{{id}}">
+        {{label}}
+      </label>
+    </li>
+  </ng-template>
+
+  <ng-container *ngFor="let item of items">
+    <ng-container
+      *ngTemplateOutlet="genderSwitch; context:{id: item[0], value: item[0], label: item[1]}"/>
+  </ng-container>
+</ul>

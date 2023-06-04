@@ -1,0 +1,22 @@
+<ul class="radios-group" [formGroup]="formGroup">
+  <ng-template #radioButton let-id let-formControlName="formControlName" let-label="label" let-description="description"
+               let-value="value">
+    <li class="radio">
+      <div class="radio__wrapper">
+        <input id="activity-{{id}}" name="{{formControlName}}" formControlName="{{formControlName}}" value="{{value}}"
+               type="radio" [defaultChecked]="value=='min'" required>
+        <label for="activity-{{id}}">
+          {{label}}
+        </label>
+      </div>
+      <p class="radio__description">
+        {{description}}
+      </p>
+    </li>
+  </ng-template>
+
+  <ng-container *ngFor="let item of items">
+    <ng-container
+      *ngTemplateOutlet="radioButton; context: {$implicit: item[0], formControlName:'activity', label: item[1], description: item[2], value: item[0]}"/>
+  </ng-container>
+</ul>

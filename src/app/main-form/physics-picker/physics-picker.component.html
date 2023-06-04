@@ -1,0 +1,22 @@
+<div class="inputs-group" [formGroup]="formGroup">
+  <ng-template #picker let-id="id" let-label="label" let-unit="unit" let-name="name">
+    <div class="input">
+      <div class="input__heading">
+        <label class="heading" for="{{id}}">
+          {{label}}
+        </label>
+        <span class="input__heading-unit">
+                    {{unit}}
+                  </span>
+      </div>
+      <div class="input__wrapper">
+        <input type="text" id="{{id}}" name="{{name}}" formControlName="{{name}}" placeholder="0" inputmode="decimal"
+               maxlength="3" required>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-container *ngFor="let item of items">
+    <ng-container *ngTemplateOutlet="picker; context: {id: item.id, label:item.label, name: item.id, unit:item.unit}"/>
+  </ng-container>
+</div>
